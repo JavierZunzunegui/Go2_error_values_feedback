@@ -19,7 +19,7 @@ It has 3 packages:
 - exampleusage: a main, where you can validate everything works as expected
 
 The output of running the main is:
-```go
+```
 *MyErrorPtr to MyErrorPtr: pointer implements error - I support foo!
 *MyErrorPtr to Foorer: pointer implements error - I support foo!
 MyError to MyError: value implements error - I support bar!
