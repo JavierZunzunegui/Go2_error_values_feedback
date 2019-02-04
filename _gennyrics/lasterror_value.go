@@ -5,21 +5,20 @@ import (
 	"github.com/JavierZunzunegui/Go2_error_values_feedback/xerrors"
 )
 
-type MyErrorName generic.Type
 type MyErrorType generic.Type
 
 // compile time check the provided type implements error
-var _ error = (MyErrorType)(nil)
+var _ error = MyErrorType{}
 
-func isMyErrorName(err error) bool {
+func isMyErrorType(err error) bool {
 	_, ok := err.(MyErrorType)
 	return ok
 }
 
-func LastMyErrorName(err error) MyErrorType {
-	lastErr := xerrors.Last(err, isMyErrorName)
+func LastMyErrorType(err error) (MyErrorType, bool) {
+	lastErr := xerrors.Last(err, isMyErrorType)
 	if lastErr == nil {
-		return nil
+		return MyErrorType{}, false
 	}
-	return lastErr.(MyErrorType)
+	return lastErr.(MyErrorType), true
 }
